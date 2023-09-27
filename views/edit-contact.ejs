@@ -1,0 +1,29 @@
+<h1 class="font-medium text-2xl">Form edit kontak</h1>
+<a href="/contact" class="rounded text-sky-600 font-semibold text-xs block my-2">Kembali</a>
+<% if (typeof errors != "undefined") { %>
+<div class="inline-block p-2 border rounded bg-red-200 border-red-400">
+  <% errors.forEach(err => { %>
+  <span class="block text-sm font-semibold"><%= err.msg %></span>
+  <% }) %>
+</div>
+<% } %>
+<form action="/contact?_method=PUT" method="post" class="w-72 flex flex-col items-start gap-3">
+  <input type="hidden" name="_id" value="<%= contact._id %>">
+  <input type="hidden" name="oldName" value="<%= contact.oldName || contact.nama %>">
+  <label class="flex flex-col">
+    <span class="text-xs text-slate-700 font-semibold">Nama lengkap</span>
+    <input type="text" value="<%= contact.nama %>" id="full-name" name="nama"
+      class="border p-2 px-3 rounded border-slate-300 outline-none focus:border-slate-400">
+  </label>
+  <label class="flex flex-col">
+    <span class="text-xs text-slate-700 font-semibold">No Hp</span>
+    <input type="text" id="telephone" value="<%= contact.noHp %>" name="noHp"
+      class="border p-2 px-3 rounded border-slate-300 outline-none focus:border-slate-400">
+  </label>
+  <label class="flex flex-col">
+    <span class="text-xs text-slate-700 font-semibold">Email</span>
+    <input type="email" value="<%= contact.email %>" name="email"
+      class="border p-2 px-3 rounded border-slate-300 outline-none focus:border-slate-400">
+  </label>
+  <button type="submit" class="bg-sky-600 p-3 py-2 rounded text-xs font-semibold text-white">Edit kontak</button>
+</form>
